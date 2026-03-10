@@ -3,256 +3,384 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Happy Birthday</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Gowun+Dodum&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- font-family:'Noto Serif KR',serif;
- background:#f5efe6;
- overflow-x:hidden;
- color:#5a4a42;
- text-align:center;
+
+*{
+box-sizing:border-box;
 }
 
-/* background particles */
-canvas{
- position:fixed;
- top:0;
- left:0;
- z-index:-1;
+body{
+margin:0;
+font-family:'Gowun Dodum', sans-serif;
+background:#f5efe6;
+color:#5a4a42;
+overflow-x:hidden;
+text-align:center;
 }
+
+/* 배경 파티클 */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* 섹션 */
 
 .section{
- min-height:100vh;
- display:flex;
- flex-direction:column;
- align-items:center;
- justify-content:center;
- padding:40px 20px;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:40px 20px;
 }
 
-h1{font-size:48px;margin-bottom:10px}
-.subtitle{opacity:.8;margin-bottom:40px}
+/* 제목 */
 
-/* cake */
+h1{
+font-family:'Gowun Batang', serif;
+font-size:52px;
+margin-bottom:10px;
+animation:fadeIn 2s ease;
+}
+
+.subtitle{
+opacity:.8;
+margin-bottom:40px;
+font-size:18px;
+}
+
+/* 등장 애니메이션 */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* 케이크 */
+
 .cake{
- position:relative;
- width:140px;
- height:100px;
- background:#e6cfc2;
- border-radius:10px;
- margin-top:20px;
+position:relative;
+width:140px;
+height:100px;
+background:#e6cfc2;
+border-radius:10px;
+margin-top:20px;
 }
 
 .candle{
- position:absolute;
- top:-40px;
- left:50%;
- transform:translateX(-50%);
- width:12px;
- height:40px;
- background:white;
- border-radius:4px;
+position:absolute;
+top:-40px;
+left:50%;
+transform:translateX(-50%);
+width:12px;
+height:40px;
+background:white;
+border-radius:4px;
 }
 
 .flame{
- position:absolute;
- top:-14px;
- left:50%;
- transform:translateX(-50%);
- width:16px;
- height:16px;
- background:#ffd27a;
- border-radius:50%;
- animation:flicker .4s infinite alternate;
+position:absolute;
+top:-14px;
+left:50%;
+transform:translateX(-50%);
+width:16px;
+height:16px;
+background:#ffd27a;
+border-radius:50%;
+animation:flicker .4s infinite alternate;
 }
 
 @keyframes flicker{
- from{transform:translateX(-50%) scale(1)}
- to{transform:translateX(-50%) scale(1.2)}
+from{transform:translateX(-50%) scale(1)}
+to{transform:translateX(-50%) scale(1.2)}
 }
 
-/* button */
+/* 버튼 */
+
 button{
- margin-top:30px;
- padding:12px 28px;
- border:none;
- border-radius:20px;
- background:#e8dfd3;
- cursor:pointer;
- font-size:16px;
+margin-top:30px;
+padding:12px 28px;
+border:none;
+border-radius:20px;
+background:#e8dfd3;
+cursor:pointer;
+font-size:16px;
+font-family:'Gowun Dodum';
 }
 
-/* typing letter */
+/* 편지 */
+
 .letter{
- max-width:600px;
- line-height:1.8;
- font-size:18px;
- background:rgba(255,255,255,.6);
- padding:40px;
- border-radius:20px;
- backdrop-filter:blur(6px);
- min-height:200px;
+max-width:600px;
+line-height:1.9;
+font-size:18px;
+background:rgba(255,255,255,.6);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(6px);
+white-space:pre-line;
 }
 
-/* gallery */
+/* 갤러리 */
+
 .gallery{
- position:relative;
- width:80%;
- max-width:600px;
- overflow:hidden;
- border-radius:16px;
+position:relative;
+width:80%;
+max-width:600px;
+overflow:hidden;
+border-radius:16px;
 }
 
 .gallery img{
- width:100%;
- display:none;
+width:100%;
+display:none;
 }
 
-.gallery img.active{display:block}
+.gallery img.active{
+display:block;
+}
 
-/* gift */
+/* 선물 */
+
 .gift{
- font-size:60px;
- cursor:pointer;
- transition:transform .3s;
+font-size:60px;
+cursor:pointer;
+transition:transform .3s;
 }
 
-.gift:hover{transform:scale(1.1)}
+.gift:hover{
+transform:scale(1.1);
+}
 
-.hidden{display:none}
+.hidden{
+display:none;
+}
 
 </style>
 </head>
+
 <body>
 
 <canvas id="bg"></canvas>
 
 <audio autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2d2d4e7a6c.mp3?filename=happy-birthday-to-you-piano-version-13976.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2d2d4e7a6c.mp3?filename=happy-birthday-to-you-piano-version-13976.mp3">
 </audio>
 
 <section class="section">
-<h1>Happy Birthday 🎂</h1>
-<div class="subtitle">동국대 최고미녀 임재은 탄생일</div>
+
+<h1>재은아 생일 축하해 🎂</h1>
+
+<div class="subtitle">
+동국대 최고미녀 임재은 탄생일 ✨
+</div>
 
 <div class="cake" onclick="blowCandle()">
+
 <div class="candle">
 <div class="flame" id="flame"></div>
 </div>
+
 </div>
 
-<div>촛불을 클릭해서 꺼봐 ✨</div>
+<p>촛불을 클릭해서 꺼봐 ✨</p>
+
 </section>
 
 <section class="section">
+
 <h2>💌 편지</h2>
+
 <div class="letter" id="letter"></div>
-<button onclick="startTyping()">편지 읽기</button>
+
+<button onclick="startTyping()">
+편지 읽기
+</button>
+
 </section>
 
 <section class="section">
+
 <h2>📸 Memories</h2>
+
 <div class="gallery">
+
 <img class="active" src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
+
 <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+
 <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
+
 <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+
 </div>
+
 </section>
 
 <section class="section">
+
 <h2>🎁 마지막 선물</h2>
+
 <div class="gift" onclick="openGift()">🎁</div>
+
 <div id="surprise" class="hidden">
+
 <h3>다시 한번 생일 축하해! 🎉</h3>
 <p>오늘 하루가 정말 특별하길 바라 ✨</p>
+
 </div>
+
 </section>
 
 <script>
 
-/* candle */
+/* 촛불 끄기 */
+
 function blowCandle(){
- document.getElementById('flame').style.display='none'
+document.getElementById('flame').style.display='none'
 }
 
-/* typing letter */
-const text=`To.재은
+/* 편지 타이핑 */
+
+const text = `To.재은
 
 Happy Birthday ✨
 
 캠우리를 통해 만난 인연이 너여서 너무 행복해.
-수많은 사람들 속에서 우리가 한 팀으로 만나고, 그 팀의 팀장이 너였다는 게 아직도 참 신기하고 고마워.
-항상 누구보다 먼저 고민하고, 우리를 챙겨주고, 묵묵히 팀을 이끌어줘서 덕분에 우리는 더 즐겁고 따뜻하게 그 시간을 보낼 수 있었던 것 같아. 
-나에게 캠우리의 기억을 떠올리면 가장 먼저 재은이가 생각나.
-아마 너는 별것 아닌 일처럼 생각할지도 모르지만 누군가에게는 그렇게 마음 써주는 사람이 있다는 것 자체가 정말 큰 힘이 되더라.
-너를 보며 나도 많이 배우고 더 성장할 수 있었어🥰
-앞으로 재은이가 하고 싶은 일, 이루고 싶은 꿈들이 하나씩 다 이루어지길 진심으로 바라. 
-재은이가 가진 따뜻함과 진심이라면 어디에서든 분명 많은 사람들에게 좋은 영향을 줄 거라고 믿어.
+수많은 사람들 속에서 우리가 한 팀으로 만나고,
+그 팀의 팀장이 너였다는 게 아직도 참 신기하고 고마워.
 
-우리의 인연이 그때의 추억으로만 끝나는 게 아니라, 오래오래 서로의 삶 속에 남아있는 인연이었으면 좋겠다.
+항상 누구보다 먼저 고민하고,
+우리를 챙겨주고,
+묵묵히 팀을 이끌어줘서 덕분에 우리는 더 즐겁고 따뜻하게
+그 시간을 보낼 수 있었던 것 같아.
 
-생일 정말 축하해
-그리고 우리 팀장이어서, 재은이어서 고마워.
+나에게 캠우리의 기억을 떠올리면
+가장 먼저 재은이가 생각나.
+
+아마 너는 별것 아닌 일처럼 생각할지도 모르지만
+누군가에게는 그렇게 마음 써주는 사람이 있다는 것 자체가
+정말 큰 힘이 되더라.
+
+너를 보며 나도 많이 배우고
+더 성장할 수 있었어 🥰
+
+앞으로 재은이가 하고 싶은 일,
+이루고 싶은 꿈들이 하나씩 다 이루어지길 진심으로 바라.
+
+재은이가 가진 따뜻함과 진심이라면
+어디에서든 분명 많은 사람들에게
+좋은 영향을 줄 거라고 믿어.
+
+우리의 인연이 그때의 추억으로만 끝나는 게 아니라
+오래오래 서로의 삶 속에 남아있는 인연이었으면 좋겠다.
+
+생일 정말 축하해.
+그리고 우리 팀장이어서,
+재은이어서 고마워.
 
 사랑해 재은 🤍
+
 From.아영`
 
-let i=0
+let i = 0
+
 function startTyping(){
- const el=document.getElementById('letter')
- el.innerHTML=''
- const interval=setInterval(()=>{
- el.innerHTML+=text[i]
- i++
- if(i>=text.length)clearInterval(interval)
- },40)
+
+const el=document.getElementById('letter')
+
+el.innerHTML=''
+
+const interval=setInterval(()=>{
+
+el.innerHTML+=text[i]
+
+i++
+
+if(i>=text.length)clearInterval(interval)
+
+},40)
+
 }
 
-/* slideshow */
+/* 사진 슬라이드 */
+
 const slides=document.querySelectorAll('.gallery img')
+
 let index=0
+
 setInterval(()=>{
- slides[index].classList.remove('active')
- index=(index+1)%slides.length
- slides[index].classList.add('active')
+
+slides[index].classList.remove('active')
+
+index=(index+1)%slides.length
+
+slides[index].classList.add('active')
+
 },3000)
 
-/* gift */
+/* 선물 */
+
 function openGift(){
- document.getElementById('surprise').classList.remove('hidden')
+document.getElementById('surprise').classList.remove('hidden')
 }
 
-/* particles */
+/* 파티클 */
+
 const canvas=document.getElementById('bg')
 const ctx=canvas.getContext('2d')
+
 canvas.width=window.innerWidth
 canvas.height=window.innerHeight
 
 let particles=[]
+
 for(let i=0;i<80;i++){
- particles.push({
- x:Math.random()*canvas.width,
- y:Math.random()*canvas.height,
- r:Math.random()*2+1,
- d:Math.random()*1
- })
+
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+d:Math.random()*1
+})
+
 }
 
 function draw(){
- ctx.clearRect(0,0,canvas.width,canvas.height)
- ctx.fillStyle='rgba(255,255,255,0.6)'
- particles.forEach(p=>{
- ctx.beginPath()
- ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
- ctx.fill()
- p.y+=p.d
- if(p.y>canvas.height)p.y=0
- })
- requestAnimationFrame(draw)
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle='rgba(255,255,255,0.6)'
+
+particles.forEach(p=>{
+
+ctx.beginPath()
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
+ctx.fill()
+
+p.y+=p.d
+
+if(p.y>canvas.height)p.y=0
+
+})
+
+requestAnimationFrame(draw)
+
 }
 
 draw()
