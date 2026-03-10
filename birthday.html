@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+<style>
+body{
+ margin:0;
+ font-family: 'Pretendard', sans-serif;
+ background:#f5efe6;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ height:100vh;
+ color:#5a4a42;
+}
+.container{
+ text-align:center;
+ max-width:600px;
+ padding:40px;
+ background:rgba(255,255,255,0.6);
+ border-radius:20px;
+ backdrop-filter: blur(6px);
+}
+.title{
+ font-size:42px;
+ margin-bottom:20px;
+}
+.message{
+ font-size:18px;
+ line-height:1.7;
+}
+button{
+ margin-top:30px;
+ padding:12px 24px;
+ border:none;
+ border-radius:20px;
+ background:#e8dfd3;
+ cursor:pointer;
+ font-size:16px;
+}
+.hidden{
+ display:none;
+ margin-top:20px;
+ font-size:20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="title">Happy Birthday 🎂</div>
+<div class="message">오늘은 세상에서 가장 특별한 날이야.<br>너가 태어나줘서 고마워.</div>
+<button onclick="showMessage()">편지 보기</button>
+<div id="letter" class="hidden">
+항상 네가 웃는 날이 많았으면 좋겠어.<br>
+올해도 행복한 일들로 가득하길 바라! 💌
+</div>
+</div>
+
+<script>
+function showMessage(){
+ document.getElementById('letter').style.display='block';
+}
+</script>
+</body>
+</html>
