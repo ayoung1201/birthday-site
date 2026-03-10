@@ -13,21 +13,15 @@ body{
  background:#f5efe6;
  overflow-x:hidden;
  color:#5a4a42;
+ text-align:center;
 }
 
-/* moving background */
-.bg{
+/* background particles */
+canvas{
  position:fixed;
- width:200%;
- height:200%;
- background:radial-gradient(circle,#fff7ef 0%,#f5efe6 60%);
- animation:moveBg 25s linear infinite;
+ top:0;
+ left:0;
  z-index:-1;
-}
-@keyframes moveBg{
- 0%{transform:translate(-10%,-10%)}
- 50%{transform:translate(-20%,-15%)}
- 100%{transform:translate(-10%,-10%)}
 }
 
 .section{
@@ -37,50 +31,42 @@ body{
  align-items:center;
  justify-content:center;
  padding:40px 20px;
- text-align:center;
 }
 
-h1{
- font-size:48px;
- margin-bottom:10px;
-}
-
-.subtitle{
- opacity:0.8;
- margin-bottom:40px;
-}
+h1{font-size:48px;margin-bottom:10px}
+.subtitle{opacity:.8;margin-bottom:40px}
 
 /* cake */
 .cake{
  position:relative;
- width:120px;
- height:90px;
+ width:140px;
+ height:100px;
  background:#e6cfc2;
- border-radius:8px;
+ border-radius:10px;
  margin-top:20px;
 }
 
 .candle{
  position:absolute;
- top:-35px;
+ top:-40px;
  left:50%;
  transform:translateX(-50%);
  width:12px;
- height:35px;
- background:#fff;
+ height:40px;
+ background:white;
  border-radius:4px;
 }
 
 .flame{
  position:absolute;
- top:-12px;
+ top:-14px;
  left:50%;
  transform:translateX(-50%);
- width:14px;
- height:14px;
+ width:16px;
+ height:16px;
  background:#ffd27a;
  border-radius:50%;
- animation:flicker 0.4s infinite alternate;
+ animation:flicker .4s infinite alternate;
 }
 
 @keyframes flicker{
@@ -88,69 +74,114 @@ h1{
  to{transform:translateX(-50%) scale(1.2)}
 }
 
-/* letter */
+/* button */
+button{
+ margin-top:30px;
+ padding:12px 28px;
+ border:none;
+ border-radius:20px;
+ background:#e8dfd3;
+ cursor:pointer;
+ font-size:16px;
+}
+
+/* typing letter */
 .letter{
  max-width:600px;
  line-height:1.8;
  font-size:18px;
- background:rgba(255,255,255,0.6);
+ background:rgba(255,255,255,.6);
  padding:40px;
  border-radius:20px;
  backdrop-filter:blur(6px);
+ min-height:200px;
 }
 
 /* gallery */
 .gallery{
- display:flex;
- gap:20px;
- overflow-x:auto;
- padding:20px;
+ position:relative;
+ width:80%;
+ max-width:600px;
+ overflow:hidden;
+ border-radius:16px;
 }
 
 .gallery img{
- height:260px;
- border-radius:14px;
- flex-shrink:0;
- box-shadow:0 10px 20px rgba(0,0,0,0.1);
+ width:100%;
+ display:none;
 }
 
-.scroll{
- font-size:14px;
- margin-top:30px;
- opacity:0.7;
+.gallery img.active{display:block}
+
+/* gift */
+.gift{
+ font-size:60px;
+ cursor:pointer;
+ transition:transform .3s;
 }
+
+.gift:hover{transform:scale(1.1)}
+
+.hidden{display:none}
+
 </style>
 </head>
 <body>
 
-<div class="bg"></div>
+<canvas id="bg"></canvas>
 
-<!-- music -->
 <audio autoplay loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2d2d4e7a6c.mp3?filename=happy-birthday-to-you-piano-version-13976.mp3" type="audio/mpeg">
 </audio>
 
-<!-- intro -->
 <section class="section">
-<h1>Happy Birthday 재은 🎂</h1>
+<h1>Happy Birthday 🎂</h1>
 <div class="subtitle">동국대 최고미녀 임재은 탄생일</div>
 
-<div class="cake">
+<div class="cake" onclick="blowCandle()">
 <div class="candle">
-<div class="flame"></div>
+<div class="flame" id="flame"></div>
 </div>
 </div>
 
-<div class="scroll">스크롤해서 편지를 읽어봐 💌</div>
+<div>촛불을 클릭해서 꺼봐 ✨</div>
 </section>
 
-<!-- letter -->
 <section class="section">
-<div class="letter">
-<p>
-To.재은
-</p>
-<p>
+<h2>💌 편지</h2>
+<div class="letter" id="letter"></div>
+<button onclick="startTyping()">편지 읽기</button>
+</section>
+
+<section class="section">
+<h2>📸 Memories</h2>
+<div class="gallery">
+<img class="active" src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
+<img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+</div>
+</section>
+
+<section class="section">
+<h2>🎁 마지막 선물</h2>
+<div class="gift" onclick="openGift()">🎁</div>
+<div id="surprise" class="hidden">
+<h3>다시 한번 생일 축하해! 🎉</h3>
+<p>오늘 하루가 정말 특별하길 바라 ✨</p>
+</div>
+</section>
+
+<script>
+
+/* candle */
+function blowCandle(){
+ document.getElementById('flame').style.display='none'
+}
+
+/* typing letter */
+const text=`To.재은
+
 Happy Birthday ✨
 
 캠우리를 통해 만난 인연이 너여서 너무 행복해.
@@ -163,29 +194,70 @@ Happy Birthday ✨
 재은이가 가진 따뜻함과 진심이라면 어디에서든 분명 많은 사람들에게 좋은 영향을 줄 거라고 믿어.
 
 우리의 인연이 그때의 추억으로만 끝나는 게 아니라, 오래오래 서로의 삶 속에 남아있는 인연이었으면 좋겠다.
-</p>
-<p>
+
 생일 정말 축하해
 그리고 우리 팀장이어서, 재은이어서 고마워.
 
 사랑해 재은 🤍
-</p>
-<p>
-From.아영
-</p>
-</div>
-</section>
+From.아영`
 
-<!-- photo gallery -->
-<section class="section">
-<h2>Memories 📸</h2>
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-<img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
-</div>
-</section>
+let i=0
+function startTyping(){
+ const el=document.getElementById('letter')
+ el.innerHTML=''
+ const interval=setInterval(()=>{
+ el.innerHTML+=text[i]
+ i++
+ if(i>=text.length)clearInterval(interval)
+ },40)
+}
+
+/* slideshow */
+const slides=document.querySelectorAll('.gallery img')
+let index=0
+setInterval(()=>{
+ slides[index].classList.remove('active')
+ index=(index+1)%slides.length
+ slides[index].classList.add('active')
+},3000)
+
+/* gift */
+function openGift(){
+ document.getElementById('surprise').classList.remove('hidden')
+}
+
+/* particles */
+const canvas=document.getElementById('bg')
+const ctx=canvas.getContext('2d')
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let particles=[]
+for(let i=0;i<80;i++){
+ particles.push({
+ x:Math.random()*canvas.width,
+ y:Math.random()*canvas.height,
+ r:Math.random()*2+1,
+ d:Math.random()*1
+ })
+}
+
+function draw(){
+ ctx.clearRect(0,0,canvas.width,canvas.height)
+ ctx.fillStyle='rgba(255,255,255,0.6)'
+ particles.forEach(p=>{
+ ctx.beginPath()
+ ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
+ ctx.fill()
+ p.y+=p.d
+ if(p.y>canvas.height)p.y=0
+ })
+ requestAnimationFrame(draw)
+}
+
+draw()
+
+</script>
 
 </body>
 </html>
