@@ -23,7 +23,7 @@ overflow-x:hidden;
 text-align:center;
 }
 
-/* 배경 파티클 */
+/* 배경 */
 
 canvas{
 position:fixed;
@@ -43,6 +43,33 @@ justify-content:center;
 padding:40px 20px;
 }
 
+/* 주인공 사진 */
+
+.hero{
+display:flex;
+flex-direction:column;
+align-items:center;
+margin-bottom:20px;
+}
+
+.hero img{
+width:200px;
+height:200px;
+object-fit:cover;
+border-radius:50%;
+border:6px solid #fff;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+margin-bottom:20px;
+animation:fadeIn 2s ease;
+}
+
+.hero-name{
+font-family:'Gowun Batang', serif;
+font-size:22px;
+opacity:.9;
+margin-bottom:10px;
+}
+
 /* 제목 */
 
 h1{
@@ -57,8 +84,6 @@ opacity:.8;
 margin-bottom:40px;
 font-size:18px;
 }
-
-/* 등장 애니메이션 */
 
 @keyframes fadeIn{
 from{
@@ -139,20 +164,51 @@ white-space:pre-line;
 /* 갤러리 */
 
 .gallery{
-position:relative;
-width:80%;
-max-width:600px;
-overflow:hidden;
-border-radius:16px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:12px;
+width:90%;
+max-width:900px;
+margin-top:30px;
 }
 
 .gallery img{
 width:100%;
-display:none;
+height:160px;
+object-fit:cover;
+border-radius:12px;
+cursor:pointer;
+transition:transform .3s, box-shadow .3s;
 }
 
-.gallery img.active{
-display:block;
+.gallery img:hover{
+transform:scale(1.05);
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* 사진 확대 */
+
+.modal{
+display:none;
+position:fixed;
+z-index:999;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+}
+
+.modal img{
+max-width:90%;
+max-height:90%;
+border-radius:12px;
+}
+
+.modal.active{
+display:flex;
 }
 
 /* 선물 */
@@ -184,6 +240,11 @@ display:none;
 
 <section class="section">
 
+<div class="hero">
+<img src="images/12.png">
+<div class="hero-name">오늘의 주인공 ✨</div>
+</div>
+
 <h1>재은아 생일 축하해 🎂</h1>
 
 <div class="subtitle">
@@ -198,7 +259,7 @@ display:none;
 
 </div>
 
-<p>촛불을 클릭해서 꺼봐 ✨</p>
+<p>촛불을 클릭해서 끄고 밑으로 스크롤 해봐 ✨</p>
 
 </section>
 
@@ -220,14 +281,22 @@ display:none;
 
 <div class="gallery">
 
-<img class="active" src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
+<img src="images/1.png">
+<img src="images/2.png">
+<img src="images/3.png">
+<img src="images/4.png">
+<img src="images/5.png">
+<img src="images/6.png">
+<img src="images/7.png">
+<img src="images/8.png">
+<img src="images/9.png">
+<img src="images/10.png">
+<img src="images/11.png">
 
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+</div>
 
-<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-
-<img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
-
+<div id="modal" class="modal" onclick="closeModal()">
+<img id="modalImg">
 </div>
 
 </section>
@@ -249,15 +318,15 @@ display:none;
 
 <script>
 
-/* 촛불 끄기 */
+/* 촛불 */
 
 function blowCandle(){
 document.getElementById('flame').style.display='none'
 }
 
-/* 편지 타이핑 */
+/* 편지 */
 
-const text = `To.재은
+const text=`To.재은
 
 Happy Birthday ✨
 
@@ -270,41 +339,26 @@ Happy Birthday ✨
 묵묵히 팀을 이끌어줘서 덕분에 우리는 더 즐겁고 따뜻하게
 그 시간을 보낼 수 있었던 것 같아.
 
-나에게 캠우리의 기억을 떠올리면
-가장 먼저 재은이가 생각나.
-
-아마 너는 별것 아닌 일처럼 생각할지도 모르지만
-누군가에게는 그렇게 마음 써주는 사람이 있다는 것 자체가
-정말 큰 힘이 되더라.
-
 너를 보며 나도 많이 배우고
-더 성장할 수 있었어 🥰
+더 성장할 수 있었어.
 
 앞으로 재은이가 하고 싶은 일,
 이루고 싶은 꿈들이 하나씩 다 이루어지길 진심으로 바라.
 
-재은이가 가진 따뜻함과 진심이라면
-어디에서든 분명 많은 사람들에게
-좋은 영향을 줄 거라고 믿어.
-
-우리의 인연이 그때의 추억으로만 끝나는 게 아니라
-오래오래 서로의 삶 속에 남아있는 인연이었으면 좋겠다.
-
 생일 정말 축하해.
-그리고 우리 팀장이어서,
-재은이어서 고마워.
+우리 팀장이어서 고마워.
 
 사랑해 재은 🤍
 
 From.아영`
 
-let i = 0
+let i=0
 
 function startTyping(){
 
-const el=document.getElementById('letter')
+const el=document.getElementById("letter")
 
-el.innerHTML=''
+el.innerHTML=""
 
 const interval=setInterval(()=>{
 
@@ -318,26 +372,27 @@ if(i>=text.length)clearInterval(interval)
 
 }
 
-/* 사진 슬라이드 */
-
-const slides=document.querySelectorAll('.gallery img')
-
-let index=0
-
-setInterval(()=>{
-
-slides[index].classList.remove('active')
-
-index=(index+1)%slides.length
-
-slides[index].classList.add('active')
-
-},3000)
-
 /* 선물 */
 
 function openGift(){
-document.getElementById('surprise').classList.remove('hidden')
+document.getElementById("surprise").classList.remove("hidden")
+}
+
+/* 사진 확대 */
+
+const galleryImages=document.querySelectorAll(".gallery img")
+const modal=document.getElementById("modal")
+const modalImg=document.getElementById("modalImg")
+
+galleryImages.forEach(img=>{
+img.addEventListener("click",()=>{
+modal.classList.add("active")
+modalImg.src=img.src
+})
+})
+
+function closeModal(){
+modal.classList.remove("active")
 }
 
 /* 파티클 */
