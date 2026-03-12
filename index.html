@@ -316,6 +316,8 @@ font-weight:700;
 <img id="modalImg">
 </div>
 
+</section>
+
 <section class="section">
 
 <h2>✨ 마지막 페이지 ✨</h2>
@@ -389,37 +391,80 @@ if(i>=text.length)clearInterval(interval)
 
 function startConfetti(){
 
-for(let i=0;i<150;i++){
+const explosionPoints = [
+{x: window.innerWidth * 0.2, y: window.innerHeight * 0.3},
+{x: window.innerWidth * 0.5, y: window.innerHeight * 0.2},
+{x: window.innerWidth * 0.8, y: window.innerHeight * 0.3},
+{x: window.innerWidth * 0.35, y: window.innerHeight * 0.5},
+{x: window.innerWidth * 0.65, y: window.innerHeight * 0.5}
+]
 
-const confetti=document.createElement("div")
+explosionPoints.forEach((point, index) => {
+setTimeout(() => {
+createExplosion(point.x, point.y)
+}, index * 200)
+})
+}
 
-confetti.style.position="fixed"
-confetti.style.width="8px"
-confetti.style.height="8px"
-confetti.style.background="hsl("+Math.random()*360+",70%,70%)"
-confetti.style.left=Math.random()*window.innerWidth+"px"
-confetti.style.top="-10px"
-confetti.style.borderRadius="50%"
-confetti.style.zIndex="9999"
+function createExplosion(centerX, centerY){
+
+const particleCount = 50
+
+for(let i = 0; i < particleCount; i++){
+
+const confetti = document.createElement("div")
+
+const angle = (Math.PI * 2 * i) / particleCount
+const velocity = Math.random() * 6 + 4
+const vx = Math.cos(angle) * velocity
+const vy = Math.sin(angle) * velocity
+
+const size = Math.random() * 10 + 4
+const shapes = ['50%', '0%']
+const shape = shapes[Math.floor(Math.random() * shapes.length)]
+
+confetti.style.position = "fixed"
+confetti.style.width = size + "px"
+confetti.style.height = size + "px"
+confetti.style.background = "hsl(" + Math.random() * 360 + ",80%,65%)"
+confetti.style.left = centerX + "px"
+confetti.style.top = centerY + "px"
+confetti.style.borderRadius = shape
+confetti.style.zIndex = "9999"
+confetti.style.opacity = "1"
+confetti.style.pointerEvents = "none"
 
 document.body.appendChild(confetti)
 
-let fall=Math.random()*3+2
+let posX = centerX
+let posY = centerY
+let velocityX = vx
+let velocityY = vy
+const gravity = 0.3
+let opacity = 1
+let rotation = Math.random() * 360
 
-const anim=setInterval(()=>{
+const anim = setInterval(() => {
 
-confetti.style.top=(confetti.offsetTop+fall)+"px"
-confetti.style.left=(confetti.offsetLeft+(Math.random()*4-2))+"px"
+velocityY += gravity
+posX += velocityX
+posY += velocityY
+opacity -= 0.015
+rotation += 5
 
-if(confetti.offsetTop>window.innerHeight){
+confetti.style.left = posX + "px"
+confetti.style.top = posY + "px"
+confetti.style.opacity = opacity
+confetti.style.transform = `rotate(${rotation}deg)`
+
+if(opacity <= 0 || posY > window.innerHeight + 50){
 confetti.remove()
 clearInterval(anim)
 }
 
-},20)
+}, 20)
 
 }
-
 }
 
 /* 사진 확대 */
