@@ -16,7 +16,7 @@ box-sizing:border-box;
 body{
 margin:0;
 font-family:'Gowun Dodum', sans-serif;
-background:linear-gradient(135deg, #ffeef8 0%, #ffe8f0 50%, #f5efe6 100%);
+background:linear-gradient(135deg, #f9f5f0 0%, #f5efe6 50%, #ede4d8 100%);
 color:#5a4a42;
 overflow-x:hidden;
 text-align:center;
@@ -58,7 +58,7 @@ height:220px;
 object-fit:cover;
 border-radius:50%;
 border:8px solid #fff;
-box-shadow:0 15px 40px rgba(216,140,154,0.3), 0 0 0 12px rgba(255,255,255,0.5);
+box-shadow:0 15px 40px rgba(139,119,101,0.25), 0 0 0 12px rgba(255,255,255,0.5);
 margin-bottom:20px;
 animation:fadeInScale 2s ease;
 }
@@ -68,11 +68,8 @@ font-family:'Gowun Batang', serif;
 font-size:24px;
 opacity:.9;
 margin-bottom:10px;
-background:linear-gradient(45deg, #d88c9a, #e6a3b3);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-background-clip:text;
 font-weight:600;
+color:#8b7765;
 }
 
 /* 제목 */
@@ -85,6 +82,7 @@ margin-bottom:20px;
 animation:fadeInScale 2s ease;
 letter-spacing:-1px;
 text-shadow:2px 2px 4px rgba(0,0,0,0.05);
+color:#5a4a42;
 }
 
 .subtitle{
@@ -92,10 +90,10 @@ opacity:.8;
 margin-bottom:30px;
 font-size:20px;
 padding:12px 24px;
-background:rgba(255,255,255,0.6);
+background:rgba(255,255,255,0.7);
 border-radius:20px;
 backdrop-filter:blur(10px);
-box-shadow:0 4px 15px rgba(0,0,0,0.08);
+box-shadow:0 4px 15px rgba(139,119,101,0.15);
 }
 
 @keyframes fadeInScale{
@@ -118,7 +116,7 @@ height:120px;
 background:linear-gradient(180deg, #f5d5c8 0%, #e6cfc2 100%);
 border-radius:12px;
 margin-top:30px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
+box-shadow:0 10px 30px rgba(139,119,101,0.2);
 cursor:pointer;
 transition:transform 0.3s;
 }
@@ -137,7 +135,7 @@ width:140px;
 height:15px;
 background:#f5d5c8;
 border-radius:50%;
-box-shadow:0 -2px 8px rgba(0,0,0,0.1);
+box-shadow:0 -2px 8px rgba(139,119,101,0.15);
 }
 
 .cake::after{
@@ -148,6 +146,7 @@ left:50%;
 transform:translateX(-50%);
 font-size:40px;
 opacity:0.3;
+filter:grayscale(0);
 }
 
 .candle{
@@ -157,9 +156,9 @@ left:50%;
 transform:translateX(-50%);
 width:14px;
 height:50px;
-background:linear-gradient(180deg, #fff 0%, #ffe8f0 100%);
+background:linear-gradient(180deg, #fff 0%, #f5efe6 100%);
 border-radius:4px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+box-shadow:0 4px 10px rgba(139,119,101,0.15);
 }
 
 .candle::before{
@@ -205,21 +204,22 @@ margin-top:30px;
 padding:14px 32px;
 border:none;
 border-radius:25px;
-background:linear-gradient(135deg, #ffd4e5 0%, #e8dfd3 100%);
+background:linear-gradient(135deg, #ebe1d5 0%, #e8dfd3 100%);
 cursor:pointer;
 font-size:17px;
 font-family:'Gowun Dodum';
 color:#5a4a42;
 -webkit-appearance:none;
 appearance:none;
-box-shadow:0 6px 20px rgba(216,140,154,0.2);
+box-shadow:0 6px 20px rgba(139,119,101,0.2);
 transition:all 0.3s;
 font-weight:500;
 }
 
 button:hover{
 transform:translateY(-2px);
-box-shadow:0 8px 25px rgba(216,140,154,0.3);
+box-shadow:0 8px 25px rgba(139,119,101,0.3);
+background:linear-gradient(135deg, #f0e6da 0%, #ebe1d5 100%);
 }
 
 button:active{
@@ -238,23 +238,21 @@ outline:none;
 max-width:650px;
 line-height:2;
 font-size:18px;
-background:rgba(255,255,255,0.8);
+background:rgba(255,255,255,0.85);
 padding:50px;
 border-radius:25px;
 backdrop-filter:blur(10px);
 white-space:pre-line;
-box-shadow:0 10px 40px rgba(0,0,0,0.1);
+box-shadow:0 10px 40px rgba(139,119,101,0.15);
 border:2px solid rgba(255,255,255,0.9);
+color:#5a4a42;
 }
 
 h2{
 font-size:32px;
 font-family:'Noto Serif KR', serif;
 margin-bottom:30px;
-background:linear-gradient(45deg, #d88c9a, #e6a3b3);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-background-clip:text;
+color:#8b7765;
 }
 
 /* 갤러리 */
@@ -276,12 +274,12 @@ border-radius:16px;
 cursor:pointer;
 transition:transform .3s, box-shadow .3s;
 border:3px solid #fff;
-box-shadow:0 8px 20px rgba(0,0,0,0.12);
+box-shadow:0 8px 20px rgba(139,119,101,0.15);
 }
 
 .gallery img:hover{
 transform:scale(1.08) rotate(2deg);
-box-shadow:0 12px 30px rgba(216,140,154,0.25);
+box-shadow:0 12px 30px rgba(139,119,101,0.25);
 }
 
 /* 사진 확대 */
@@ -318,6 +316,7 @@ animation:fadeIn 0.3s;
 font-size:60px;
 cursor:pointer;
 transition:transform .3s;
+filter:grayscale(0);
 }
 
 .gift:hover{
@@ -338,19 +337,20 @@ font-weight:700;
 input{
 padding:14px 20px;
 border-radius:12px;
-border:2px solid rgba(216,140,154,0.3);
+border:2px solid rgba(139,119,101,0.25);
 margin-top:20px;
 width:280px;
 font-family:'Gowun Dodum';
 font-size:16px;
 transition:all 0.3s;
 background:rgba(255,255,255,0.9);
+color:#5a4a42;
 }
 
 input:focus{
 outline:none;
-border-color:#d88c9a;
-box-shadow:0 0 0 4px rgba(216,140,154,0.1);
+border-color:#8b7765;
+box-shadow:0 0 0 4px rgba(139,119,101,0.1);
 }
 
 input::placeholder{
@@ -373,15 +373,16 @@ transform:translateY(-10px);
 }
 }
 
-/* 파티클 효과 개선 */
+/* 이모티콘 필터 제거 */
 
-@keyframes float{
-0%, 100%{
-transform:translateY(0) rotate(0deg);
-}
-50%{
-transform:translateY(-20px) rotate(180deg);
-}
+.emoji{
+filter:grayscale(0) !important;
+-webkit-filter:grayscale(0) !important;
+color:initial !important;
+background:none !important;
+-webkit-background-clip:initial !important;
+-webkit-text-fill-color:initial !important;
+background-clip:initial !important;
 }
 
 </style>
@@ -399,16 +400,16 @@ transform:translateY(-20px) rotate(180deg);
 
 <div class="hero">
 <img src="images/12.png">
-<div class="hero-name">오늘의 주인공 🥳</div>
+<div class="hero-name">오늘의 주인공 <span class="emoji">🥳</span></div>
 </div>
 
-<h1>재은아 <span class="birthday"><br>생일 축하해 🎂</span></h1>
+<h1>재은아 <span class="birthday"><br>생일 축하해 <span class="emoji">🎂</span></span></h1>
 
 <div class="subtitle">
-🎊 동국대 최고미녀 임재은 탄생일 🎊
+<span class="emoji">🎊</span> 동국대 최고미녀 임재은 탄생일 <span class="emoji">🎊</span>
 </div>
 
-<p style="margin-bottom:30px;font-size:18px;">촛불 클릭! 🕯️</p>
+<p style="margin-bottom:30px;font-size:18px;">촛불 클릭! <span class="emoji">🕯️</span></p>
 
 <div class="cake" onclick="blowCandle()">
 
@@ -418,25 +419,25 @@ transform:translateY(-20px) rotate(180deg);
 
 </div>
 
-<p class="scroll-hint" style="margin-top:100px;font-size:17px;">이제 밑으로 스크롤해서 편지 확인해봐 공주 💌</p>
+<p class="scroll-hint" style="margin-top:100px;font-size:17px;">이제 밑으로 스크롤해서 편지 확인해봐 공주 <span class="emoji">💌</span></p>
 
 </section>
 
 <section class="section">
 
-<h2>💌 편지</h2>
+<h2><span class="emoji">💌</span> 편지</h2>
 
 <div class="letter" id="letter"></div>
 
 <button onclick="startTyping()">
-편지 읽기 📖
+편지 읽기 <span class="emoji">📖</span>
 </button>
 
 </section>
 
 <section class="section">
 
-<h2>📸 Memories</h2>
+<h2><span class="emoji">📸</span> Memories</h2>
 
 <div class="gallery">
 
@@ -462,15 +463,15 @@ transform:translateY(-20px) rotate(180deg);
 
 <section class="section">
 
-<h2>✨ 마지막 페이지 ✨</h2>
+<h2><span class="emoji">✨</span> 마지막 페이지 <span class="emoji">✨</span></h2>
 
-<p style="font-size:18px;">오늘의 소원을 하나 빌어봐 🌟</p>
+<p style="font-size:18px;">오늘의 소원을 하나 빌어봐 <span class="emoji">🌟</span></p>
 
 <input id="wishInput" placeholder="소원을 적어보세요 ⭐️">
 
 <br>
 
-<button onclick="makeWish()">소원 보내기 ✨</button>
+<button onclick="makeWish()">소원 보내기 <span class="emoji">✨</span></button>
 
 <div id="wishResult" style="margin-top:25px;font-size:19px;font-weight:500;"></div>
 
@@ -664,7 +665,7 @@ x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 r:Math.random()*3+1,
 d:Math.random()*1.5+0.5,
-color: `rgba(${200 + Math.random()*55}, ${140 + Math.random()*55}, ${154 + Math.random()*55}, ${Math.random()*0.4+0.3})`
+color: `rgba(${200 + Math.random()*30}, ${180 + Math.random()*30}, ${160 + Math.random()*30}, ${Math.random()*0.3+0.2})`
 })
 
 }
@@ -700,12 +701,12 @@ const result=document.getElementById("wishResult")
 
 if(wish===""){
 result.innerHTML="💭 소원을 적어줘"
-result.style.color="#d88c9a"
+result.style.color="#8b7765"
 return
 }
 
 result.innerHTML="✨ 재은이의 소원이 이루어지길 🙏✨"
-result.style.color="#d88c9a"
+result.style.color="#8b7765"
 
 startConfetti()
 
