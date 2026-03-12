@@ -246,7 +246,42 @@ white-space:pre-line;
 box-shadow:0 10px 40px rgba(139,119,101,0.15);
 border:2px solid rgba(255,255,255,0.9);
 color:#5a4a42;
+min-height:200px;
+position:relative;
 }
+
+.letter.empty{
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:20px;
+background:linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,239,230,0.9) 100%);
+}
+
+.letter.empty::before{
+content:'💌';
+font-size:80px;
+animation:float 3s ease-in-out infinite;
+}
+
+.letter.empty::after{
+content:'편지를 읽어보세요';
+font-size:20px;
+color:#8b7765;
+opacity:0.7;
+font-family:'Gowun Batang', serif;
+}
+
+@keyframes float{
+0%, 100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-15px);
+}
+}
+
 
 h2{
 font-size:32px;
@@ -427,7 +462,7 @@ background-clip:initial !important;
 
 <h2><span class="emoji">💌</span> 편지</h2>
 
-<div class="letter" id="letter"></div>
+<div class="letter empty" id="letter"></div>
 
 <button onclick="startTyping()">
 편지 읽기 <span class="emoji">📖</span>
@@ -521,6 +556,7 @@ function startTyping(){
 
 const el=document.getElementById("letter")
 
+el.classList.remove("empty")
 el.innerHTML=""
 i = 0
 
